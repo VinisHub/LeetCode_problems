@@ -3,11 +3,10 @@ public:
     bool containsDuplicate(vector<int>& nums) {
         unordered_map<int, int> mpp;
         for(auto it : nums){
+            if(mpp[it] >= 1) return true;
             mpp[it]++;
         }
-        for(auto i : mpp){
-            if(i.second > 1) return true;
-        }
+        
         return false;
         
     }
