@@ -1,10 +1,17 @@
 class Solution {
 public:
     bool check(vector<int>& nums) {
-        int count = 0;
+        vector<int> b, sorted = nums;
+        int x;
+        sort(sorted.begin(), sorted.end());
         for(int i=0;i<nums.size();i++){
-            if(nums[i] > nums[(i+1) % nums.size()]) count++;
+            x = i;
+            for(int j=0;j<nums.size();j++){
+                b.push_back(nums[(j+x) % nums.size()]);
+            }
+            if(sorted == b) return true;
+            b.clear();
         }
-        return count <= 1;
+        return false;
     }
 };
