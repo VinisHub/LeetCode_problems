@@ -1,0 +1,16 @@
+q1c_dependency.cpp:27:23: missed: couldn't vectorize loop
+q1c_dependency.cpp:28:23: missed: not vectorized: no vectype for stmt: _10 = *_9;
+ scalar_type: float
+q1c_dependency.cpp:17:23: optimized: loop vectorized using 32 byte vectors and unroll factor 8
+q1c_dependency.cpp:13:27: missed: statement clobbers memory: _23 = operator new [] (400000000);
+q1c_dependency.cpp:14:27: missed: statement clobbers memory: _26 = operator new [] (400000000);
+q1c_dependency.cpp:21:57: missed: statement clobbers memory: start = std::chrono::_V2::system_clock::now ();
+q1c_dependency.cpp:31:55: missed: statement clobbers memory: end = std::chrono::_V2::system_clock::now ();
+/usr/include/c++/16/bits/ostream.h:739:18: missed: statement clobbers memory: std::__ostream_insert<char, std::char_traits<char> > (&cout, "Execution time (dependency loop): ", 34);
+/usr/include/c++/16/bits/ostream.h:232:25: missed: statement clobbers memory: _48 = std::basic_ostream<char>::_M_insert<double> (&cout, _44);
+/usr/include/c++/16/bits/ostream.h:739:18: missed: statement clobbers memory: std::__ostream_insert<char, std::char_traits<char> > (_48, " ms\n", 4);
+/usr/include/c++/16/bits/ostream.h:739:18: missed: statement clobbers memory: std::__ostream_insert<char, std::char_traits<char> > (&cout, "Sanity check A[100] = ", 22);
+/usr/include/c++/16/bits/ostream.h:239:18: missed: statement clobbers memory: _50 = std::basic_ostream<char>::_M_insert<double> (&cout, __d_49);
+/usr/include/c++/16/bits/ostream.h:739:18: missed: statement clobbers memory: std::__ostream_insert<char, std::char_traits<char> > (_50, "\n", 1);
+q1c_dependency.cpp:37:14: missed: statement clobbers memory: operator delete [] (_23);
+q1c_dependency.cpp:38:14: missed: statement clobbers memory: operator delete [] (_26);

@@ -1,0 +1,15 @@
+{
+  "configurations": [
+    {
+      "name": "Endeavour Linux",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "/usr/lib/gcc/x86_64-pc-linux-gnu/16/include"
+      ],
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "c17",
+      "intelliSenseMode": "linux-gcc-x64"
+    }
+  ],
+  "version": 4
+}
