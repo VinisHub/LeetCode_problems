@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Decision Log — MargDarshi</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 font-sans">
+
+  <!-- Top nav -->
+  <header class="flex items-center justify-between border-b border-slate-800 bg-slate-900 px-6 py-3">
+    <div class="flex items-center gap-3">
+      <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-red-900/40 text-lg">🚆</div>
+      <div class="leading-tight">
+        <div class="text-lg font-bold text-blue-400">MargDarshi</div>
+        <div class="text-xs text-slate-500">Bangalore Division</div>
+      </div>
+    </div>
+
+    <nav class="hidden items-center gap-1 md:flex">
+      <a href="index.html" class="flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white">
+        <i data-lucide="layout-dashboard" class="h-4 w-4"></i> Dashboard
+      </a>
+      <a href="decision-log.html" class="flex items-center gap-2 rounded-md bg-blue-600 px-3 py-1.5 text-sm font-medium text-white">
+        <i data-lucide="file-text" class="h-4 w-4"></i> Decision Log
+      </a>
+      <a href="kpi-dashboard.html" class="flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white">
+        <i data-lucide="bar-chart-3" class="h-4 w-4"></i> KPI Dashboard
+      </a>
+      <a href="what-if-simulation.html" class="flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white">
+        <i data-lucide="zap" class="h-4 w-4"></i> What-if Simulation
+      </a>
+    </nav>
+
+    <div class="flex items-center gap-5">
+      <div class="hidden items-center gap-2 text-right sm:flex">
+        <i data-lucide="calendar" class="h-4 w-4 text-slate-500"></i>
+        <div class="leading-tight">
+          <div id="clock-time" class="font-mono text-sm font-semibold">--:--:--</div>
+          <div id="clock-date" class="text-xs text-slate-500">--/--/----</div>
+        </div>
+      </div>
+      <div class="hidden h-6 w-px bg-slate-800 sm:block"></div>
+      <button class="flex items-center gap-1 text-sm text-slate-400 hover:text-white">
+        <i data-lucide="globe" class="h-4 w-4"></i> EN
+      </button>
+      <button class="text-slate-400 hover:text-white">
+        <i data-lucide="sun" class="h-[18px] w-[18px]"></i>
+      </button>
+      <button class="relative text-slate-400 hover:text-white">
+        <i data-lucide="bell" class="h-[18px] w-[18px]"></i>
+        <span class="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-red-500"></span>
+      </button>
+      <button class="flex items-center gap-2 text-sm text-slate-300 hover:text-white">
+        <div class="flex h-7 w-7 items-center justify-center rounded-full bg-slate-700 text-xs font-semibold">V</div>
+        <span class="hidden lg:inline">Bangalore Division</span>
+        <i data-lucide="chevron-down" class="h-3.5 w-3.5"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Body -->
+  <main class="p-6">
+    <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+      <div class="relative flex-1">
+        <i data-lucide="search" class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500"></i>
+        <input id="search-input" type="text" placeholder="Search trains or plans..."
+          class="w-full rounded-lg border border-slate-700 bg-slate-900 py-2.5 pl-10 pr-4 text-sm placeholder-slate-500 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600" />
+      </div>
+
+      <select class="rounded-lg border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-slate-300 outline-none focus:border-blue-600">
+        <option>All Actions</option>
+        <option>Accepted</option>
+        <option>Rethink</option>
+        <option>Rejected</option>
+      </select>
+
+      <button id="export-btn" class="flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700">
+        <i data-lucide="download" class="h-4 w-4"></i> Export CSV
+      </button>
+    </div>
+
+    <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900">
+      <div class="min-w-[900px]">
+        <div class="grid border-b border-slate-800 px-5 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500"
+          style="grid-template-columns: 160px 84px 1fr 104px 200px 210px;">
+          <div>Timestamp</div>
+          <div>Train ID</div>
+          <div>Plan Summary</div>
+          <div>Action</div>
+          <div>Reason</div>
+          <div>Metrics</div>
+        </div>
+        <div id="log-rows"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Swap this array for your real API/log data later.
+    const decisionLogs = [
+      { id: 1, timestamp: '2026-08-11 11:42:10', trainId: '12432', summary: 'Hold train for 3 mins at Aligarh Jn', action: 'Accepted', reason: '-', delay: -5, throughput: 2, confidence: 87 },
+      { id: 2, timestamp: '2026-08-11 11:38:45', trainId: '12951', summary: 'Priority override for VIP train', action: 'Rethink', reason: 'Emergency medical passenger', delay: 2, throughput: 0, confidence: 95 },
+      { id: 3, timestamp: '2026-08-11 11:33:20', trainId: '18448', summary: 'Reroute via alternate track', action: 'Accepted', reason: '-', delay: -8, throughput: 3, confidence: 92 },
+      { id: 4, timestamp: '2026-08-11 11:27:05', trainId: '16032', summary: 'Cross before express at Hosur Yard', action: 'Rejected', reason: 'Platform conflict at destination', delay: 6, throughput: -1, confidence: 78 },
+      { id: 5, timestamp: '2026-08-11 11:20:50', trainId: '17326', summary: 'Extend halt for crew change', action: 'Accepted', reason: '-', delay: -3, throughput: 1, confidence: 90 },
+    ];
+
+    const actionStyles = {
+      Accepted: 'bg-green-500/10 text-green-400 border-green-800',
+      Rethink: 'bg-amber-500/10 text-amber-400 border-amber-800',
+      Rejected: 'bg-red-500/10 text-red-400 border-red-800',
+    };
+
+    function formatSigned(value, suffix) {
+      const sign = value > 0 ? '+' : '';
+      return `${sign}${value} ${suffix}`;
+    }
+
+    function renderRows() {
+      const container = document.getElementById('log-rows');
+      container.innerHTML = decisionLogs.map(log => `
+        <div class="grid items-start border-b border-slate-800 px-5 py-4 text-sm last:border-b-0 hover:bg-slate-800/40"
+          style="grid-template-columns: 160px 84px 1fr 104px 200px 210px;">
+          <div class="flex items-center gap-2 text-slate-400">
+            <i data-lucide="calendar" class="h-3.5 w-3.5 text-slate-600"></i>
+            ${log.timestamp}
+          </div>
+          <div class="font-medium text-blue-400">${log.trainId}</div>
+          <div class="pr-4 text-slate-200">${log.summary}</div>
+          <div>
+            <span class="inline-block rounded-full border px-3 py-1 text-xs font-semibold ${actionStyles[log.action]}">${log.action}</span>
+          </div>
+          <div class="pr-4 text-slate-400">${log.reason}</div>
+          <div class="space-y-0.5 text-slate-300">
+            <div>Delay: ${formatSigned(log.delay, 'min')}</div>
+            <div>Throughput: ${formatSigned(log.throughput, 'trains/hr')}</div>
+            <div>Confidence: ${log.confidence}%</div>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('clock-time').textContent = now.toLocaleTimeString('en-GB');
+      document.getElementById('clock-date').textContent = now.toLocaleDateString('en-GB');
+    }
+
+    renderRows();
+    lucide.createIcons();
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
