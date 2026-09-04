@@ -10,6 +10,7 @@ A collection of LeetCode questions to ace the coding interviews! - Created using
 | [0118-pascals-triangle](https://github.com/VinisHub/LeetCode_problems/tree/master/0118-pascals-triangle) |
 | [0229-majority-element-ii](https://github.com/VinisHub/LeetCode_problems/tree/master/0229-majority-element-ii) |
 | [3219-make-lexicographically-smallest-array-by-swapping-elements](https://github.com/VinisHub/LeetCode_problems/tree/master/3219-make-lexicographically-smallest-array-by-swapping-elements) |
+| [4284-smallest-stable-index-i](https://github.com/VinisHub/LeetCode_problems/tree/master/4284-smallest-stable-index-i) |
 ## Dynamic Programming
 |  |
 | ------- |
@@ -30,7 +31,7 @@ A collection of LeetCode questions to ace the coding interviews! - Created using
 |  |
 | ------- |
 | [0229-majority-element-ii](https://github.com/VinisHub/LeetCode_problems/tree/master/0229-majority-element-ii) |
-## BoyerÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂMoore Majority Vote Algorithm
+## BoyerÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂMoore Majority Vote Algorithm
 |  |
 | ------- |
 | [0229-majority-element-ii](https://github.com/VinisHub/LeetCode_problems/tree/master/0229-majority-element-ii) |
@@ -59,4 +60,8 @@ A collection of LeetCode questions to ace the coding interviews! - Created using
 |  |
 | ------- |
 | [2182-find-the-minimum-and-maximum-number-of-nodes-between-critical-points](https://github.com/VinisHub/LeetCode_problems/tree/master/2182-find-the-minimum-and-maximum-number-of-nodes-between-critical-points) |
+## Prefix Sum
+|  |
+| ------- |
+| [4284-smallest-stable-index-i](https://github.com/VinisHub/LeetCode_problems/tree/master/4284-smallest-stable-index-i) |
 <!---LeetCode Topics End-->
